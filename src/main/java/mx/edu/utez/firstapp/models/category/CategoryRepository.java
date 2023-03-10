@@ -1,6 +1,7 @@
 package mx.edu.utez.firstapp.models.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,8 @@ public interface CategoryRepository
                     "WHERE id = :id",
             nativeQuery = true
     )
-    boolean updateStatusById(
+    @Modifying
+    int updateStatusById(
             @Param("status") Boolean status,
             @Param("id") Long id
     );
